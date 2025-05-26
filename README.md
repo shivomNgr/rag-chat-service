@@ -99,19 +99,28 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 ## Testing
 Run unit tests to verify functionality:
+### All Tests (recommended):
 ```bash
-pytest app/tests/ -v
+  pytest app/tests/ -v
 ```
+### Individual Test Files:
+```bash
+pytest app/tests/test_message.py -v
+pytest app/tests/test_session.py -v
+```
+
+**Note**: Tests cover health checks, session CRUD operations, message addition, and retrieval. Ensure the database is configured (DATABASE_URL in .env) before running tests.
+
 
 ## API Endpoints
 All endpoints require X-API-Key header for authentication. Key endpoints:
-- POST /chat/sessions: Create a new chat session
-- GET /chat/sessions/{session_id}: Retrieve session details
-- PUT /chat/sessions/{session_id}: Update session name or favorite status
-- DELETE /chat/sessions/{session_id}: Delete session and associated messages
-- POST /chat/sessions/{session_id}/messages: Add a message
-- GET /chat/sessions/{session_id}/messages?page={page}&page_size={page_size}: Retrieve paginated messages
-- GET /health: Check service health
+- `POST /chat/sessions`: Create a new chat session
+- `GET /chat/sessions/{session_id}`: Retrieve session details
+- `PUT /chat/sessions/{session_id}`: Update session name or favorite status
+- `DELETE /chat/sessions/{session_id}`: Delete session and associated messages
+- `POST /chat/sessions/{session_id}/messages`: Add a message
+- `GET /chat/sessions/{session_id}/messages?page={page}&page_size={page_size}`: Retrieve paginated messages
+- `GET /health`: Check service health
 
 Full docs at: http://localhost:8000/docs
 
@@ -186,6 +195,6 @@ In production, configure Cross-Origin Resource Sharing (CORS) to allow requests 
 MIT License
 
 ## Contact
-Maintainer: Shivom Sharma
-Email: shivom.sharma@nagarro.com
-GitHub: shivomNgr
+- Maintainer: Shivom Sharma
+- Email: shivom.sharma@nagarro.com
+- GitHub: shivomNgr
