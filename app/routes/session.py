@@ -23,17 +23,21 @@ async def create_session(
     api_key: str = Depends(verify_api_key)
 ):
     """
-    Create a new chat session.
-    Args:
-        session_data (ChatSessionCreate): The data for the new chat session.
-        request (Request): The FastAPI request object.
-        db (AsyncSession): The database session dependency.
-        api_key (str): The API key for authentication.
-    Returns:
-        ChatSessionResponse: The response model containing the created session.
-    Raises:
-        HTTPException: If an error occurs during session creation.
+    ### Create a new chat session
+
+    **Parameters:**
+    - `session_data` (ChatSessionCreate): The data for the new chat session.
+    - `request` (Request): The FastAPI request object.
+    - `db` (AsyncSession): The database session dependency.
+    - `api_key` (str): The API key for authentication.
+
+    **Returns:**
+    - `ChatSessionResponse`: The response model containing the created session.
+
+    **Raises:**
+    - `HTTPException`: If an error occurs during session creation.
     """
+
     repo = ChatSessionRepository(db)
     try:
         return await repo.create(session_data)
@@ -50,16 +54,19 @@ async def get_session(
     api_key: str = Depends(verify_api_key)
 ):
     """
-    Retrieve a chat session by its ID.
-    Args:
-        session_id (str): The UUID of the session to retrieve.
-        request (Request): The FastAPI request object.
-        db (AsyncSession): The database session dependency.
-        api_key (str): The API key for authentication.
-    Returns:
-        ChatSessionResponse: The response model containing the retrieved session.
-    Raises:
-        HTTPException: If the session ID is invalid or if an error occurs during retrieval.
+    ### Retrieve a chat session by its ID
+
+    **Parameters:**
+    - `session_id` (str): The UUID of the session to retrieve.
+    - `request` (Request): The FastAPI request object.
+    - `db` (AsyncSession): The database session dependency.
+    - `api_key` (str): The API key for authentication.
+
+    **Returns:**
+    - `ChatSessionResponse`: The response model containing the retrieved session.
+
+    **Raises:**
+    - `HTTPException`: If the session ID is invalid or if an error occurs during retrieval.
     """
     try:
         session_id_uuid = uuid.UUID(session_id)
@@ -84,18 +91,22 @@ async def update_session(
     api_key: str = Depends(verify_api_key)
 ):
     """
-    Update an existing chat session.
-    Args:
-        session_id (str): The UUID of the session to update.
-        session_data (ChatSessionUpdate): The updated data for the chat session.
-        request (Request): The FastAPI request object.
-        db (AsyncSession): The database session dependency.
-        api_key (str): The API key for authentication.
-    Returns:
-        ChatSessionResponse: The response model containing the updated session.
-    Raises:
-        HTTPException: If the session ID is invalid or if an error occurs during update.
+    ### Update an existing chat session
+
+    **Parameters:**
+    - `session_id` (str): The UUID of the session to update.
+    - `session_data` (ChatSessionUpdate): The updated data for the chat session.
+    - `request` (Request): The FastAPI request object.
+    - `db` (AsyncSession): The database session dependency.
+    - `api_key` (str): The API key for authentication.
+
+    **Returns:**
+    - `ChatSessionResponse`: The response model containing the updated session.
+
+    **Raises:**
+    - `HTTPException`: If the session ID is invalid or if an error occurs during update.
     """
+
     try:
         session_id_uuid = uuid.UUID(session_id)
     except ValueError:
@@ -118,17 +129,21 @@ async def delete_session(
     api_key: str = Depends(verify_api_key)
 ):
     """
-    Delete a chat session by its ID.
-    Args:
-        session_id (str): The UUID of the session to delete.
-        request (Request): The FastAPI request object.
-        db (AsyncSession): The database session dependency.
-        api_key (str): The API key for authentication.
-    Returns:
-        dict: A dictionary containing a success message.
-    Raises:
-        HTTPException: If the session ID is invalid or if an error occurs during deletion.
+    ### Delete a chat session by its ID
+
+    **Parameters:**
+    - `session_id` (str): The UUID of the session to delete.
+    - `request` (Request): The FastAPI request object.
+    - `db` (AsyncSession): The database session dependency.
+    - `api_key` (str): The API key for authentication.
+
+    **Returns:**
+    - `dict`: A dictionary containing a success message.
+
+    **Raises:**
+    - `HTTPException`: If the session ID is invalid or if an error occurs during deletion.
     """
+
     try:
         session_id_uuid = uuid.UUID(session_id)
     except ValueError:
